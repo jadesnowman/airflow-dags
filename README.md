@@ -1,3 +1,7 @@
+pip i -r requirement
+
+airflow db migrate
+
 airflow users create \
     --username Admin \
     --firstname Admin \
