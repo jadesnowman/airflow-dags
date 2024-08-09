@@ -1,3 +1,5 @@
+echo $AIRFLOW_HOME
+
 pip i -r requirement
 
 airflow db migrate
