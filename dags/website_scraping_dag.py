@@ -24,4 +24,11 @@ with DAG(
         url='https://news.ycombinator.com',
     )
 
-    scrape_website
+    data_ready = DataReadySensor(
+        task_id='check_data_ready',
+        task_id_to_check='scrape_website',
+        timeout=5,  # wait for 5 seconds max
+        poke_interval=1,  # check every seconds
+    )
+
+    scrape_website >> data_ready

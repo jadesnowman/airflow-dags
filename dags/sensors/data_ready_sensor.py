@@ -9,9 +9,7 @@ class DataReadySensor(BaseSensorOperator):
 
     def poke(self, context):
         try:
-            data = context['ti'].xcom_pull(task_ids=self.task_id_to_check)
-            self.log.info(f"Extracted items from the HTML")
-            self.log.info(data)
+            data = context['ti'].xcom_pull(key=self.task_id_to_check, task_ids=self.task_id_to_check)
             return data is not None
         except Exception as e:
             self.log.info(f"Error: {e}")

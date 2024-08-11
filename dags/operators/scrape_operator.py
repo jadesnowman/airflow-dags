@@ -17,7 +17,8 @@ class ScrapeOperator(BaseOperator):
         response = requests.get(self.url)
         soup = BeautifulSoup(response.text, 'html.parser')
         data = self.parse_data(soup)
-        self.save_data(context, data)
+        #self.save_data(context, data)
+        context['ti'].xcom_push(key=context['ti'].task_id, value=data)
 
     def parse_data(self, soup):
         items = soup.find_all('span', class_='titleline')
@@ -51,4 +52,4 @@ class ScrapeOperator(BaseOperator):
         with open(file_path, 'w') as f:
             f.write(json_data)
 
-        context['ti'].xcom_push(key='scraped_data', value=file_path)
+        context['ti'].xcom_push(key=context['ti'].task_id, value=file_path)

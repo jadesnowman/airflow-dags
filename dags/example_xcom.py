@@ -19,4 +19,10 @@ with DAG(dag_id='example_xcom', start_date=datetime(2023, 8, 11), schedule_inter
         provide_context=True
     )
 
-    push_task
+    pull_task = PythonOperator(
+        task_id='pull_task',
+        python_callable=pull_data,
+        provide_context=True
+    )
+
+    push_task >> pull_task
