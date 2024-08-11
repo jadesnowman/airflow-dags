@@ -3,4 +3,5 @@ logs
 airflow-webserver.pid
 airflow.cfg
 webserver_config.py
-dags/__pycache__
+*pyc
+data

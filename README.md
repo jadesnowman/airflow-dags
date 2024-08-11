@@ -29,3 +29,5 @@ airflow celery worker
 airflow celery stop
 
 airflow celery flower
+
+airflow dags list
