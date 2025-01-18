@@ -1,35 +1,11 @@
-echo $AIRFLOW_HOME
+scrapy startproject tutorial
+scrapy crawl quotes
+scrapy crawl quotes -o quotes.jsonl
 
-pip i -r requirement
+scrapy crawl plants
+scrapy crawl plants -o plants.jsonl
+scrapy crawl plants -o ../data/plants_$(date +%Y-%m-%d).json
+scrapy crawl plants -o ../data/plants_$(date +%Y-%m-%d_%H-%M-%S).json
 
-airflow db migrate
-
-airflow users create \
-    --username groot \
-    --firstname groot \
-    --lastname groot \
-    --role Admin \
-    --email groot@yopmail.com \
-    --password groot
-
-airflow users create \
-    --username rocket \
-    --firstname rocket \
-    --lastname rocket \
-    --role Viewer \
-    --email rocket@yopmail.com \
-    --password rocket
-
-airflow webserver --port 9999
-
-airflow scheduler
-
-airflow celery worker
-
-airflow celery stop
-
-airflow celery flower
-
-airflow dags list
-
-pip install --no-cache-dir -r requirements.txt
+scrapy shell "file:///Users/ilhamsj/github/ilhamsj/airflow-dags/tutorial/plants-indoor-plant.html"
+response.css("title")
