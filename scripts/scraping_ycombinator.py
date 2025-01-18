@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
-from url_parse import url_to_slug
 
 def scrape_data(url):
     response = requests.get(url)
@@ -34,4 +33,4 @@ def save_data_to_csv(data, filename):
 
 url = 'https://news.ycombinator.com/'  # Example site
 data = scrape_data(url)
-save_data_to_csv(data, url_to_slug(url, 'csv'))
+save_data_to_csv(data, 'testing.csv')

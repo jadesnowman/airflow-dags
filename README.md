@@ -31,3 +31,5 @@ airflow celery stop
 airflow celery flower
 
 airflow dags list
+
+pip install --no-cache-dir -r requirements.txt
